@@ -1,0 +1,31 @@
+.interviewers__item {
+  transition: opacity 0.2s ease-out;
+  opacity: 0.7;
+  margin-right: 0.5rem;
+}
+.interviewers__item-image {
+  border-radius: 16px;
+}
+.interviewers__item--selected {
+  color: #222f3e;
+  background-color: #fff;
+  border-radius: 16px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  padding-left: 2px;
+  padding-right: 1rem;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.interviewers__item--selected .interviewers__item-image {
+  width: 28px;
+  height: 28px;
+  margin-right: 0.5rem;
+}
+.interviewers__item--selected, .interviewers__item:hover {
+  cursor: pointer;
+  opacity: 1;
+}/*# sourceMappingURL=InterviewerListItem.css.map */
