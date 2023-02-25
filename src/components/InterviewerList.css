@@ -1,0 +1,8 @@
+.interviewers__header {
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.interviewers__list {
+  display: flex;
+  flex-flow: row wrap;
+}/*# sourceMappingURL=InterviewerList.css.map */

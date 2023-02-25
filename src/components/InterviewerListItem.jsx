@@ -3,13 +3,13 @@ import classNames from "classnames";
 
 import "components/InterviewerListItem.scss"
 
-const InterviewListItem = (props) => {
+const InterviewerListItem = (props) => {
   let interviewClass = classNames("interviewers__item", {
     "interviewers__item--selected": props.selected
   })
   return (
     <li className={interviewClass}
-    onClick={() => props.setInterviewer(props.id)}>
+    onClick={props.setInterviewer}>
       <img
         className="interviewers__item-image"
         src={props.avatar}
@@ -20,4 +20,4 @@ const InterviewListItem = (props) => {
   );
 };
 
-export default InterviewListItem;
+export default InterviewerListItem;
