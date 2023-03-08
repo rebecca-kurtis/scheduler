@@ -1,12 +1,4 @@
-import React, { useState } from "react";
-// function useControlledInput(initial) {
-//   const [value, setValue] = useState(initial);
-
-//   return {
-//     value,
-//     onChange: (event) => setValue(event.target.value)
-//   };
-// }
+import { useState } from "react";
 
 export default function useVisualMode(initial){
   const [mode, setMode] = useState(initial)
