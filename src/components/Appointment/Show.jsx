@@ -1,13 +1,8 @@
-import useVisualMode from "hooks/useVisualMode";
 import React from "react";
 
 
 export default function Show(props) {
-  // const {transition} = useVisualMode;
-  // console.log('show props', props);
-  // const SHOW = "SHOW";
-  
-  // transition(SHOW);
+
 
   return (
     <main className="appointment__card appointment__card--show">
