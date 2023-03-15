@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function useApplicationData(){
+export default function useApplicationData() {
 
   const [state, setState] = useState({
     day: "Monday",
@@ -11,6 +11,7 @@ export default function useApplicationData(){
   });
 
   const setDay = day => setState({ ...state, day });
+  console.log('state.days:', state.days);
 
   useEffect(() => {
     Promise.all([
@@ -22,32 +23,53 @@ export default function useApplicationData(){
     )
   }, [])
 
-  const bookInterview = (id, interview) => {
+  const calculateSpots = (appointmentId, value) => {
+    for (const dayOBJ in state.days) {
+      const day = state.days[dayOBJ];
+      if (day.appointments.includes(appointmentId)) {
+        const oldSpots = day.spots;
+        if (value === "add") {
+          day.spots = (oldSpots - 1);
+        }
+        if (value === "delete") {
+          day.spots = (oldSpots + 1);
+        }
+      }
+    }
+  };
+
+  const bookInterview = (appointmentId, interview) => {
     const appointment = {
-      ...state.appointments[id],
+      ...state.appointments[appointmentId],
       interview: { ...interview }
     }
     const appointments = {
       ...state.appointments,
-      [id]: appointment
-    };
-    return axios.put(`/api/appointments/${id}`, { interview })
-      .then(() => setState({ ...state, appointments }))
+      [appointmentId]: appointment
+    }
+
+    return axios.put(`/api/appointments/${appointmentId}`, { interview })
+      .then(() => {
+        calculateSpots(appointmentId, "add");
+        setState({ ...state, appointments })
+      })
 
   };
 
-  const cancelInterview = (id, interview) => {
+  const cancelInterview = (appointmentId, interview) => {
 
     const appointment = {
-      ...state.appointments[id],
+      ...state.appointments[appointmentId],
       interview: null
     }
     const appointments = {
       ...state.appointments,
-      [id]: appointment
+      [appointmentId]: appointment
     };
-    return axios.delete(`/api/appointments/${id}`)
+
+    return axios.delete(`/api/appointments/${appointmentId}`)
       .then(() => {
+        calculateSpots(appointmentId, "delete");
         setState({
           ...state,
           appointments
