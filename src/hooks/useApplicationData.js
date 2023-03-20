@@ -24,18 +24,24 @@ export default function useApplicationData() {
   }, [])
 
   const calculateSpots = (appointmentId, value) => {
-    for (const dayOBJ in state.days) {
-      const day = state.days[dayOBJ];
-      if (day.appointments.includes(appointmentId)) {
-        const oldSpots = day.spots;
-        if (value === "add") {
-          day.spots = (oldSpots - 1);
-        }
-        if (value === "delete") {
-          day.spots = (oldSpots + 1);
+    // if (state.appointments[appointmentId].interview !== null) {
+    //   return; 
+    // } else {
+      for (const dayOBJ in state.days) {
+        const day = state.days[dayOBJ];
+        if (day.appointments.includes(appointmentId)) {
+          const oldSpots = day.spots;
+          if (value === "add") {
+            day.spots = (oldSpots - 1);
+          }
+          if (value === "delete") {
+            day.spots = (oldSpots + 1);
+          }
         }
       }
-    }
+    // }
+    console.log("state.appointments[appointmentId].interview", state.appointments[appointmentId].interview)
+    
   };
 
   const bookInterview = (appointmentId, interview) => {
@@ -47,6 +53,7 @@ export default function useApplicationData() {
       ...state.appointments,
       [appointmentId]: appointment
     }
+    console.log('bookinterview interview', interview)
 
     return axios.put(`/api/appointments/${appointmentId}`, { interview })
       .then(() => {

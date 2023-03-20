@@ -14,6 +14,7 @@ import Error from "./Error";
 
 //import custom hooks
 import useVisualMode from "hooks/useVisualMode";
+import useApplicationData from "hooks/useApplicationData";
 
 export default function Appointment(props) {
   console.log('props', props);
@@ -32,8 +33,11 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
   );
+  // const {
+  //   calculateSpots
+  // } = useApplicationData();
 
-  const save = (name, interviewer) => {
+  const save = (name, interviewer, spotsMode) => {
     const interview = {
       student: name,
       interviewer
