@@ -3,7 +3,7 @@ export function getAppointmentsForDay(state, day) {
   const daysArr = [];
 
   for (const element of state.days) {
-    if( element.name === day) {
+    if (element.name === day) {
       results.push(...element.appointments);
     }
   }
@@ -12,34 +12,33 @@ export function getAppointmentsForDay(state, day) {
       if (results.length <= 0) {
         return [];
       }
-      if ( value === state.appointments[appointment].id) {
+      if (value === state.appointments[appointment].id) {
         daysArr.push(state.appointments[appointment]);
-      } 
+      }
     }
   }
   return daysArr;
-
-};
+}
 
 export function getInterview(state, interview) {
-  if(!interview) {
+  if (!interview) {
     return null;
   }
-  const result = {...interview};
+  const result = { ...interview };
   for (const element in state.interviewers) {
-    if (interview.interviewer === state.interviewers[element].id){
-      result.interviewer= state.interviewers[element]
+    if (interview.interviewer === state.interviewers[element].id) {
+      result.interviewer = state.interviewers[element];
     }
   }
   return result;
-};
+}
 
 export function getInterviewersForDay(state, day) {
   const results = [];
   const interviewArr = [];
 
   for (const element of state.days) {
-    if( element.name === day) {
+    if (element.name === day) {
       results.push(...element.interviewers);
     }
   }
@@ -48,11 +47,29 @@ export function getInterviewersForDay(state, day) {
       if (results.length <= 0) {
         return [];
       }
-      if ( value === state.interviewers[interview].id) {
+      if (value === state.interviewers[interview].id) {
         interviewArr.push(state.interviewers[interview]);
-      } 
+      }
     }
   }
   return interviewArr;
+}
 
-};
+export function calculateSpotsForOneDay(state, day, appointments) {
+  const dayObj = state.days.find((data) => {
+    return data.name === day;
+  });
+
+  if (!dayObj) {
+    return null;
+  }
+
+  const appointmentsForOneDay = dayObj.appointments.map(
+    (appointmentsId) => appointments[appointmentsId]
+  );
+  const nullInterviews = appointmentsForOneDay.filter(
+    (appointment) => appointment.interview === null
+  );
+  const spots = nullInterviews.length;
+  return spots;
+}

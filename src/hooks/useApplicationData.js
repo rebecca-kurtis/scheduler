@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import { calculateSpotsForOneDay } from "helpers/selectors";
+
+
 export default function useApplicationData() {
 
   const [state, setState] = useState({
@@ -11,7 +14,7 @@ export default function useApplicationData() {
   });
 
   const setDay = day => setState({ ...state, day });
-  console.log('state.days:', state.days);
+  // console.log('state.days:', state.days);
 
   useEffect(() => {
     Promise.all([
@@ -40,7 +43,7 @@ export default function useApplicationData() {
         }
       }
     // }
-    console.log("state.appointments[appointmentId].interview", state.appointments[appointmentId].interview)
+    // console.log("state.appointments[appointmentId].interview", state.appointments[appointmentId].interview)
     
   };
 
@@ -53,17 +56,23 @@ export default function useApplicationData() {
       ...state.appointments,
       [appointmentId]: appointment
     }
-    console.log('bookinterview interview', interview)
+    // console.log('bookinterview interview', interview)
+
+    const days = state.days.map(day => {
+      if (day.name === state.day){
+          return {...day, spots: calculateSpotsForOneDay(state, state.day, appointments)}
+      }
+      return day;
+    });
 
     return axios.put(`/api/appointments/${appointmentId}`, { interview })
       .then(() => {
-        calculateSpots(appointmentId, "add");
-        setState({ ...state, appointments })
+        setState({ ...state, days, appointments })
       })
 
   };
 
-  const cancelInterview = (appointmentId, interview) => {
+  const cancelInterview = (appointmentId) => {
 
     const appointment = {
       ...state.appointments[appointmentId],
@@ -74,11 +83,18 @@ export default function useApplicationData() {
       [appointmentId]: appointment
     };
 
+    const days = state.days.map(day => {
+      if (day.name === state.day){
+          return {...day, spots: day.spots + 1}
+      }
+      return day;
+    });
+
     return axios.delete(`/api/appointments/${appointmentId}`)
       .then(() => {
-        calculateSpots(appointmentId, "delete");
         setState({
           ...state,
+          days,
           appointments
         })
       })

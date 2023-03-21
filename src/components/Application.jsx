@@ -8,7 +8,7 @@ import DayList from "./DayList";
 import Appointment from "./Appointment";
 
 //helper functions
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay, calculateSpotsForDay } from "helpers/selectors";
 
 //custom hooks
 import useApplicationData from "hooks/useApplicationData";
@@ -38,7 +38,7 @@ export default function Application(props) {
     )
   });
 
- 
+//  const spots = calculateSpotsForDay(state, state.day, state.appointments);
 
 
   return (
