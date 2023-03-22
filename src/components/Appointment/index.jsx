@@ -16,7 +16,7 @@ import Error from "./Error";
 import useVisualMode from "hooks/useVisualMode";
 
 export default function Appointment(props) {
-  console.log('props', props);
+  // console.log('props', props);
 
   const EMPTY = "EMPTY";
   const SHOW = "SHOWY";
