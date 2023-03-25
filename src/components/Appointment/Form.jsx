@@ -2,25 +2,21 @@ import Button from "components/Button";
 import InterviewerList from "components/InterviewerList";
 import React, { useState } from "react";
 
-
-
-
 export default function Form(props) {
- 
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] = useState(props.interviewer || null);
   const [error, setError] = useState("");
 
   const reset = () => {
-    setStudent("")
-    setInterviewer(null)
-  }
+    setStudent("");
+    setInterviewer(null);
+  };
 
   const cancel = () => {
-    reset()
+    reset();
     setError("");
-    props.onCancel()
-  }
+    props.onCancel();
+  };
 
   const validate = () => {
     if (student === "") {
@@ -32,8 +28,8 @@ export default function Form(props) {
       return;
     }
     setError("");
-    props.onSave(student, interviewer)
-  }
+    props.onSave(student, interviewer);
+  };
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -51,17 +47,21 @@ export default function Form(props) {
         </form>
         <section className="appointment__validation">{error}</section>
         <InterviewerList
-        interviewers={props.interviewers}
-        value={interviewer}
-        onChange={setInterviewer}
+          interviewers={props.interviewers}
+          value={interviewer}
+          onChange={setInterviewer}
         />
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onClick={() => validate()}>Save</Button>
+          <Button danger onClick={cancel}>
+            Cancel
+          </Button>
+          <Button confirm onClick={() => validate()}>
+            Save
+          </Button>
         </section>
       </section>
     </main>
   );
-};
+}

@@ -1,3 +1,4 @@
+//Function gets all of the appointments that are in a day based on the state and what day is inputted.
 export function getAppointmentsForDay(state, day) {
   const results = [];
   const daysArr = [];
@@ -20,6 +21,7 @@ export function getAppointmentsForDay(state, day) {
   return daysArr;
 }
 
+//Function gets all of the interviews that are currently booked based on the state and if the interview is null or not.
 export function getInterview(state, interview) {
   if (!interview) {
     return null;
@@ -33,6 +35,7 @@ export function getInterview(state, interview) {
   return result;
 }
 
+//Function gets all of the interviewers that are available for that day based on the state and what day is inputted.
 export function getInterviewersForDay(state, day) {
   const results = [];
   const interviewArr = [];
@@ -55,6 +58,7 @@ export function getInterviewersForDay(state, day) {
   return interviewArr;
 }
 
+//Calculates how many spots are available for that day based on how many appointmetns there are with null interviews.
 export function calculateSpotsForOneDay(state, day, appointments) {
   const dayObj = state.days.find((data) => {
     return data.name === day;
