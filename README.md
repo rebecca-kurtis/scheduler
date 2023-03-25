@@ -95,7 +95,7 @@ Main Page:
 !["Main Page"](https://github.com/rebecca-kurtis/scheduler/blob/master/docs/Main-scheduler-page.png)
 
 Create An Appointment:
-!["Create An Appointment"](https://github.com/rebecca-kurtis/scheduler/blob/master/docs/Main-scheduler-page.png)
+!["Create An Appointment"](https://github.com/rebecca-kurtis/scheduler/blob/master/docs/Edit-filled-out-appointment.png)
 
 See Your Saved Appointment:
 !["See Your Saved Appointment"](https://github.com/rebecca-kurtis/scheduler/blob/master/docs/Saved-created-appointment.png)
