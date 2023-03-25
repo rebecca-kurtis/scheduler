@@ -86,3 +86,17 @@ npm run test:server
     - prop-types
     - react-test-renderer
     - sass
+
+## Screenshots
+
+Interview Scheduler in Action:
+!["Interview Scheduler in Action"](https://github.com/rebecca-kurtis/scheduler/blob/master/docs/ezgif.com-video-to-gif.gif)
+
+Main Page:
+!["Main Page"](https://github.com/rebecca-kurtis/scheduler/blob/master/docs/Main-scheduler-page.png)
+
+Create An Appointment:
+!["Create An Appointment"](https://github.com/rebecca-kurtis/scheduler/blob/master/docs/Main-scheduler-page.png)
+
+See Your Saved Appointment:
+!["See Your Saved Appointment"](https://github.com/rebecca-kurtis/scheduler/blob/master/docs/Saved-created-appointment.png)
