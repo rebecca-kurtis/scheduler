@@ -53,16 +53,6 @@ npm test
 npm run storybook
 ```
 
-## Running Cypress Test Framework
-
-In the main scheduler terminal:
-```sh
-npm run cypress
-```
-In the scheduler-api terminal:
-```sh
-npm run test:server
-```
 
 ## Dependencies
 
