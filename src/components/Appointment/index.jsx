@@ -17,7 +17,7 @@ import useVisualMode from "hooks/useVisualMode";
 
 export default function Appointment(props) {
   const EMPTY = "EMPTY";
-  const SHOW = "SHOWY";
+  const SHOW = "SHOW";
   const CREATE = "CREATE";
   const SAVING = "SAVING";
   const DELETE = "DELETE";
@@ -30,7 +30,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
-  const save = (name, interviewer, spotsMode) => {
+  const save = (name, interviewer) => {
     const interview = {
       student: name,
       interviewer,
@@ -67,7 +67,7 @@ export default function Appointment(props) {
           student={props.student}
           interviewer={props.interviewer}
           interviewers={props.interviewers}
-          onCancel={() => back()}
+          onCancel={back}
           onSave={save}
         />
       )}
@@ -85,17 +85,17 @@ export default function Appointment(props) {
           student={props.interview.student}
           interviewer={props.interview.interviewer.id}
           interviewers={props.interviewers}
-          onCancel={() => back()}
+          onCancel={back}
           onSave={save}
         />
       )}
       {mode === ERROR_SAVE && (
-        <Error message={"Could not save appointment."} onClose={() => back()} />
+        <Error message={"Could not save appointment."} onClose={back} />
       )}
       {mode === ERROR_DELETE && (
         <Error
           message={"Could not cancel appointment."}
-          onClose={() => back()}
+          onClose={back}
         />
       )}
     </article>

@@ -8,22 +8,26 @@ export default function useVisualMode(initial) {
     setMode(second);
 
     setHistory((prev) => {
+      const newHistory = [...prev];
       if (replace) {
-        prev.pop();
+        newHistory.pop();
       }
-      prev.push(second);
-      return prev;
+      newHistory.push(second);
+      return newHistory;
     });
   }
 
   function back() {
     setHistory((prev) => {
-      if (prev.length <= 1) {
-        return prev;
+      const newHistory = [...prev];
+      if (newHistory.length <= 1) {
+        console.log(newHistory)
+        return newHistory;
       }
-      setMode(prev[prev.length - 2]);
-      return prev.slice(0, -1);
+      setMode(newHistory[newHistory.length - 2]);
+      return newHistory.slice(0, -1);
     });
+
   }
 
   return {
